@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'pages/popular_shows_page.dart';
+import 'pages/shows_page.dart';
 import 'providers/tvshows_provider.dart';
 
 void main() => runApp(const MyApp());

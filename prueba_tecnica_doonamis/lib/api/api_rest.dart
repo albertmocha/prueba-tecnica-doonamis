@@ -14,4 +14,15 @@ class APIRest {
       rethrow;
     }
   }
+
+  static Future<TVShow> getTVShowInfo({required int id}) async {
+    try {
+      final response = await APIExec.get(endpoint: '$id');
+      final decodedBody = jsonDecode(response) as Map<String, dynamic>;
+      TVShow tvShows = TVShow.fromMap(decodedBody);
+      return tvShows;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

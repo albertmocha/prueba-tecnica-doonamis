@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qsdokinvgokqw/pages/shows_details_page.dart';
 import '../providers/tvshows_provider.dart';
 import '../utils/colors.dart';
 import '../widgets/tvshow_line.dart';
@@ -57,8 +58,20 @@ class _PopularShowsPageState extends State<PopularShowsPage> {
                       itemCount: showsProvider.popularTVShows.length + 1,
                       itemBuilder: (context, index) {
                         if (index < showsProvider.popularTVShows.length) {
-                          return TVShowLine(
-                            tvShow: showsProvider.popularTVShows[index],
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ShowsDetailsPage(
+                                    tvShow: showsProvider.popularTVShows[index],
+                                  ),
+                                ),
+                              );
+                            },
+                            child: TVShowLine(
+                              tvShow: showsProvider.popularTVShows[index],
+                            ),
                           );
                         } else {
                           return Padding(

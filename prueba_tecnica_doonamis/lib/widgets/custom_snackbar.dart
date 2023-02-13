@@ -19,9 +19,12 @@ class CustomSnackBar {
               ),
             ),
             const SizedBox(width: 10),
-            Text(
-              text,
-              style: const TextStyle(fontSize: 16),
+            Flexible(
+              child: Text(
+                text,
+                style: const TextStyle(fontSize: 16),
+                softWrap: true,
+              ),
             ),
           ],
         ),
