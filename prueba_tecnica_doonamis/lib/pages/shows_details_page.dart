@@ -5,6 +5,7 @@ import '../global/global.dart';
 import '../providers/tvshows_provider.dart';
 import '../utils/colors.dart';
 import '../widgets/text_bg_rounded_fill.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ShowsDetailsPage extends StatefulWidget {
   TVShow tvShow;
@@ -181,7 +182,9 @@ class _BodyContainer extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.fromLTRB(25, 55, 25, 0),
           children: [
-            _DescriptionContainer(tvShow: tvShow),
+            Visibility(
+                visible: tvShow.overview != '',
+                child: _DescriptionContainer(tvShow: tvShow)),
             const SizedBox(height: 15),
             _ExtraInfoContainer(tvShow: tvShow),
             const SizedBox(height: 15),
@@ -218,9 +221,9 @@ class _DescriptionContainer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 20),
-                  const Text(
-                    'DESCRIPTION',
-                    style: TextStyle(
+                  Text(
+                    AppLocalizations.of(context)!.description,
+                    style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
@@ -263,12 +266,13 @@ class _ExtraInfoContainer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 10),
-              _subtitleInfo('Released date'),
+              _subtitleInfo(AppLocalizations.of(context)!.released_date),
               Text(tvShow.releasedDate),
               const SizedBox(height: 15),
               Visibility(
                   visible: tvShow.directors.isNotEmpty,
-                  child: _subtitleInfo('Director')),
+                  child:
+                      _subtitleInfo(AppLocalizations.of(context)!.directors)),
               Padding(
                 padding: const EdgeInsets.only(bottom: 15),
                 child: Wrap(
@@ -279,7 +283,7 @@ class _ExtraInfoContainer extends StatelessWidget {
               ),
               Visibility(
                   visible: tvShow.genres.isNotEmpty,
-                  child: _subtitleInfo('Genres')),
+                  child: _subtitleInfo(AppLocalizations.of(context)!.genres)),
               Padding(
                 padding: const EdgeInsets.only(bottom: 15),
                 child: Wrap(
@@ -290,7 +294,8 @@ class _ExtraInfoContainer extends StatelessWidget {
               ),
               Visibility(
                   visible: tvShow.platforms.isNotEmpty,
-                  child: _subtitleInfo('Available on')),
+                  child:
+                      _subtitleInfo(AppLocalizations.of(context)!.platforms)),
               Padding(
                 padding: const EdgeInsets.only(bottom: 15),
                 child: Wrap(
@@ -301,7 +306,7 @@ class _ExtraInfoContainer extends StatelessWidget {
               ),
               Visibility(
                   visible: tvShow.platforms.isNotEmpty,
-                  child: _subtitleInfo('Country')),
+                  child: _subtitleInfo(AppLocalizations.of(context)!.country)),
               Padding(
                 padding: const EdgeInsets.only(bottom: 15),
                 child: Wrap(

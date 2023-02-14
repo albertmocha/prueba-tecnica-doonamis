@@ -1,0 +1,41 @@
+{
+    "language": "en-US",
+    "@language":{
+        "description": "current language"
+    },
+
+    "list_title": "Popular TV Shows",
+    "@list_title":{
+        "description": "title of the main list"
+    },
+
+    "released_date": "Released date",
+    "@released_date":{
+        "description": "released date"
+    },
+
+    "description": "Description",
+    "@description":{
+        "description": "plot description"
+    },
+
+    "directors": "Directors",
+    "@directors":{
+        "description": "directors of the show"
+    },
+
+    "genres": "Genres",
+    "@genres":{
+        "description": "genres of the show"
+    },
+
+    "platforms": "Available on",
+    "@platforms":{
+        "description": "platforms available"
+    },
+
+    "country": "Country",
+    "@country":{
+        "description": "country of the show"
+    }
+}
