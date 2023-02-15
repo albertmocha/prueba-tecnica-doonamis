@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qsdokinvgokqw/pages/shows_details_page.dart';
+import '../global/global.dart';
 import '../providers/tvshows_provider.dart';
 import '../utils/colors.dart';
 import '../widgets/tvshow_line.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PopularShowsPage extends StatefulWidget {
   const PopularShowsPage({
@@ -19,13 +21,17 @@ class _PopularShowsPageState extends State<PopularShowsPage> {
 
   @override
   void initState() {
-    final showsProvider = Provider.of<TVShowsProvider>(context, listen: false);
-    showsProvider.init(context);
-
-    controller.addListener(() {
-      if (controller.position.maxScrollExtent == controller.offset) {
-        showsProvider.loadNewPage(context);
-      }
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Global.language = AppLocalizations.of(context)!.language;
+      final showsProvider =
+          Provider.of<TVShowsProvider>(context, listen: false);
+      showsProvider.init(context);
+      controller.addListener(() {
+        if (controller.position.maxScrollExtent == controller.offset &&
+            showsProvider.hasMorePages) {
+          showsProvider.loadNewPage(context);
+        }
+      });
     });
     super.initState();
   }
@@ -41,9 +47,9 @@ class _PopularShowsPageState extends State<PopularShowsPage> {
                     width: double.infinity,
                     child: Container(
                       padding: const EdgeInsets.all(16.0),
-                      child: const Text(
-                        "Popular TV Shows",
-                        style: TextStyle(
+                      child: Text(
+                        AppLocalizations.of(context)!.list_title,
+                        style: const TextStyle(
                           fontSize: 24.0,
                           fontWeight: FontWeight.bold,
                           color: AppColors.azulFuerte,

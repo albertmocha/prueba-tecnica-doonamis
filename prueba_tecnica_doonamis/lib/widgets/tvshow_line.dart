@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../classes/tv_show.dart';
 import '../global/global.dart';
 import '../utils/colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TVShowLine extends StatelessWidget {
   final TVShow tvShow;
@@ -138,9 +139,9 @@ class _ReleasedDate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Text(
-          'Released date:',
-          style: TextStyle(
+        Text(
+          '${AppLocalizations.of(context)!.released_date}:',
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 13,
           ),

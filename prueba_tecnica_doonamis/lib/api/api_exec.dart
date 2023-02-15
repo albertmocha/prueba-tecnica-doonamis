@@ -6,11 +6,11 @@ class APIExec {
     try {
       String pageStr = '';
       if (page != null) {
-        pageStr = '&page=$page';
+        pageStr = 'page=$page';
       }
       final response = await http.get(
         Uri.parse(
-            'https://api.themoviedb.org/3/tv/$endpoint?api_key=${Global.apiKey}&language=en-US&$pageStr'),
+            'https://api.themoviedb.org/3/tv/$endpoint?api_key=${Global.apiKey}&language=${Global.language}&$pageStr'),
       );
       if (response.statusCode != 200) {
         throw Exception('Error al obtener los datos');
